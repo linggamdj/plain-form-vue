@@ -1,7 +1,7 @@
 <template>
-  <button v-bind:style="{ background, color }" v-bind:disabled="disabled">
-    Button
-  </button>
+  <div>
+    <button :style="{ background, color }" :disabled="disabled">Button</button>
+  </div>
 </template>
 
 <script>

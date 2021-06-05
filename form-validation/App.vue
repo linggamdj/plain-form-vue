@@ -1,12 +1,16 @@
 <template>
-  <my-button background="skyblue" color="black" :disabled="!valid" />
+  <my-input name="Username" :rules="{ required: true, min: 5 }" />
+  <my-button background="darkslateblue" color="white" :disabled="!valid" />
 </template>
 
 <script>
 import MyButton from "./MyButton.vue";
+import MyInput from "./MyInput.vue";
+
 export default {
   components: {
     MyButton,
+    MyInput,
   },
 
   data() {
