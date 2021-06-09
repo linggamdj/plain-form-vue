@@ -3,6 +3,7 @@
     name="Username"
     :rules="{ required: true, min: 5 }"
     :value="username.value"
+    :error="username.error"
     @update="update"
   />
 
@@ -10,6 +11,7 @@
     name="Password"
     :rules="{ required: true, min: 15 }"
     :value="password.value"
+    :error="password.error"
     @update="update"
   />
   <my-button background="darkslateblue" color="white" :disabled="!valid" />
@@ -30,18 +32,19 @@ export default {
       valid: true,
       username: {
         value: "user",
-        valid: false,
+        error: "",
       },
       password: {
         value: "passwd",
-        valid: false,
+        error: "",
       },
     };
   },
 
   methods: {
-    update({ name, value }) {
+    update({ name, value, error }) {
       this[name].value = value;
+      this[name].error = error;
     },
   },
 };
