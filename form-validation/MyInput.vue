@@ -3,12 +3,17 @@
     <label :for="name">{{ name }}</label>
     <div class="error">{{ error }}</div>
   </div>
-  <input :id="name" :value="value" @input="input" />
+  <input :id="name" :value="value" :type="type" @input="input" />
 </template>
 
 <script>
 export default {
+  emits: ["update"],
   props: {
+    type: {
+      type: String,
+      default: "text",
+    },
     name: {
       type: String,
       required: true,

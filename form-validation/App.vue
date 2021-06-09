@@ -1,20 +1,23 @@
 <template>
-  <my-input
-    name="Username"
-    :rules="{ required: true, min: 5 }"
-    :value="username.value"
-    :error="username.error"
-    @update="update"
-  />
+  <form @submit.prevent="submit">
+    <my-input
+      name="Username"
+      :rules="{ required: true, min: 5 }"
+      :value="username.value"
+      :error="username.error"
+      @update="update"
+    />
 
-  <my-input
-    name="Password"
-    :rules="{ required: true, min: 15 }"
-    :value="password.value"
-    :error="password.error"
-    @update="update"
-  />
-  <my-button background="darkslateblue" color="white" :disabled="!valid" />
+    <my-input
+      name="Password"
+      :rules="{ required: true, min: 15 }"
+      :value="password.value"
+      :error="password.error"
+      type="password"
+      @update="update"
+    />
+    <my-button background="darkslateblue" color="white" :disabled="!valid" />
+  </form>
 </template>
 
 <script>
@@ -29,7 +32,6 @@ export default {
 
   data() {
     return {
-      valid: true,
       username: {
         value: "user",
         error: "",
@@ -41,7 +43,16 @@ export default {
     };
   },
 
+  computed: {
+    valid() {
+      return !this.username.error && !this.password.error;
+    },
+  },
+
   methods: {
+    submit() {
+      console.log("Berhasil disubmit!");
+    },
     update({ name, value, error }) {
       this[name].value = value;
       this[name].error = error;
