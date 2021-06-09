@@ -3,13 +3,17 @@
     <label :for="name">{{ name }}</label>
     <div class="error">{{ error }}</div>
   </div>
-  <input :id="name" v-model="value" />
+  <input :id="name" :value="value" @input="input" />
 </template>
 
 <script>
 export default {
   props: {
     name: {
+      type: String,
+      required: true,
+    },
+    value: {
       type: String,
       required: true,
     },
@@ -21,10 +25,13 @@ export default {
     },
   },
 
-  data() {
-    return {
-      value: "",
-    };
+  methods: {
+    input($event) {
+      this.$emit("update", {
+        name: this.name.toLowerCase(),
+        value: $event.target.value,
+      });
+    },
   },
 
   computed: {
